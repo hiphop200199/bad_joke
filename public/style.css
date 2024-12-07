@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Geo:ital@0;1&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  font-family: "Geo", sans-serif;
+}
+
+#logo-image {
+  display: none;
+}
+
+#entry {
+  position: relative;
+  min-height: 100dvh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  perspective: 100px;
+  transform-style: preserve-3d;
+  overflow-y: hidden;
+}
+#entry .background {
+  position: absolute;
+  inset: 0;
+  height: 100dvh;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: -1;
+}
+#entry .background.in {
+  opacity: 1;
+}
+#entry .background:first-of-type.in, #entry .background:last-of-type.in {
+  rotate: 0deg;
+}
+#entry .background:first-of-type {
+  background-color: #006A67;
+  -webkit-clip-path: polygon(0 60%, 100% 70%, 100% 100%, 0 100%);
+          clip-path: polygon(0 60%, 100% 70%, 100% 100%, 0 100%);
+  transform-origin: 100% 100%;
+  rotate: -15deg;
+  transition-delay: 1s;
+}
+#entry .background:nth-of-type(2) {
+  background-color: #003161;
+  -webkit-clip-path: polygon(0 50%, 100% 30%, 100% 70%, 0 60%);
+          clip-path: polygon(0 50%, 100% 30%, 100% 70%, 0 60%);
+  transform: translateX(400px);
+  transition-delay: 0.5s;
+}
+#entry .background:nth-of-type(2).in {
+  transform: none;
+}
+#entry .background:last-of-type {
+  background-color: #000B58;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 30%, 0 50%);
+          clip-path: polygon(0 0, 100% 0, 100% 30%, 0 50%);
+  transform-origin: 0% 0%;
+  rotate: -15deg;
+}
+#entry #title {
+  color: #FFF4B7;
+  font-weight: 700;
+  text-align: center;
+  font-size: 12rem;
+  transform: rotateX(-50deg) translateZ(250px);
+  transition: 0.5s;
+  transition-delay: 1.5s;
+}
+#entry #title.in {
+  transform: translateY(50px);
+}
+#entry #get-in {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  font-size: 6rem;
+  background-color: #FFF4B7;
+  padding: 30px 5px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+  transition-delay: 2s;
+  animation: getIn 3s infinite linear;
+}
+#entry #get-in.in {
+  opacity: 1;
+}
+#entry #copyright {
+  color: #FFF4B7;
+  font-size: 3rem;
+  font-style: italic;
+  opacity: 0;
+  transition: 0.5s;
+  transition-delay: 2.5s;
+}
+#entry #copyright.in {
+  opacity: 1;
+}
+
+@keyframes getIn {
+  0%, 100% {
+    scale: 1;
+  }
+  5%, 10% {
+    scale: 1.2;
+  }
+  7.5%, 12.5% {
+    scale: 1;
+  }
+}
+@media screen and (max-width: 576px) {
+  #entry #title {
+    font-size: 6rem;
+  }
+  #entry #get-in {
+    font-size: 3rem;
+  }
+  #entry #copyright {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 577px) and (max-width: 767px) {
+  #entry #title {
+    font-size: 8rem;
+  }
+  #entry #get-in {
+    font-size: 4rem;
+  }
+  #entry #copyright {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  #entry #title {
+    font-size: 8rem;
+  }
+  #entry #get-in {
+    font-size: 4rem;
+  }
+  #entry #copyright {
+    font-size: 2rem;
+  }
+}/*# sourceMappingURL=style.css.map */

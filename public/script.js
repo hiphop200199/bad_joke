@@ -1,9 +1,32 @@
-//變數宣告
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-let logoImage = document.getElementById("logo-image");
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext('2d');
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
+  authDomain: "bad-joke-60b0c.firebaseapp.com",
+  projectId: "bad-joke-60b0c",
+  storageBucket: "bad-joke-60b0c.firebasestorage.app",
+  messagingSenderId: "59569384855",
+  appId: "1:59569384855:web:731da50b3fc6fb172b28d2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+//變數宣告
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext('2d');
+const logoImage = document.getElementById("logo-image");
+const explosionSFX = new Audio('explosion.mp3');
 let logoAnimation;
+let entry = document.getElementById('entry');
+let entryBGs = document.querySelectorAll('.background');
+let entryTitle = document.getElementById('title');
+let entryBtn = document.getElementById('get-in');
+let entryCopyright = document.getElementById('copyright');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
   
@@ -25,7 +48,7 @@ class Particle{
         this.size=this.effect.gap;
         this.vx=0;
         this.vy=0;
-        this.ease=0.125;
+        this.ease=0.155;
     }
     draw(ctx){
         ctx.fillStyle=this.color;
@@ -90,9 +113,17 @@ animate();
 setTimeout(function(){
     cancelAnimationFrame(logoAnimation);
     canvas.style.display='none';
+    entry.style.display='flex';
 },4000);
 
-
+setTimeout(function () {
+    for (const element of entryBGs) {
+        element.classList.add('in');
+    }
+    entryTitle.classList.add('in');
+    entryBtn.classList.add('in');
+    entryCopyright.classList.add('in');
+  },4500)
 
 
 
