@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="menu.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Bad joke</title>
+  </head>
+  <body>
+    
+   <div id="menu">
+    <button id="BGM-control">♫</button>
+    <h1 id="title">Mode select.</h1>
+    <section id="image-box">
+        <span><img src="magnifying-glass.png" alt=""></span>   
+        <span><img src="ask.png" alt=""></span>   
+        <span><img src="question-mark.png" alt=""></span>
+      </section>
+    <section id="button-field">
+        <button id="previous">&lt;</button>
+        <button id="random" class="mode">Random</button>    
+        <button id="test" class="mode">Test</button>  
+        <button id="search" class="mode">Search</button>
+        <button id="next">&gt;</button>
+      </section>
+   </div>
+    <script type="module">
+       // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
+  authDomain: "bad-joke-60b0c.firebaseapp.com",
+  projectId: "bad-joke-60b0c",
+  storageBucket: "bad-joke-60b0c.firebasestorage.app",
+  messagingSenderId: "59569384855",
+  appId: "1:59569384855:web:731da50b3fc6fb172b28d2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+    </script>
+    <script > 
+    const explosionSFX = new Audio('explosion.mp3');
+    const TOUCH_THRESHOLD = 200;
+    const BGM = new Audio('winter-begins.mp3');
+    const BGMControl = document.getElementById("BGM-control");
+    const modes = document.querySelectorAll('.mode');
+    const previousBtn = document.getElementById('previous'); 
+    const nextBtn = document.getElementById('next'); 
+    const imageBox = document.getElementById('image-box');
+    let menu = document.getElementById('menu');
+    let degree = 0;
+    let modeIndex = 0;
+    let touchPosition = {
+        x:undefined,
+        y:undefined
+    };
+    let touchKeys = [];
+    let isTouchDown = false;
+    
+
+    for (const [index,element] of modes.entries()) {
+        if(index==modeIndex){
+            element.style.display = 'inline';
+        }else{
+            element.style.display = 'none';
+        }
+        element.addEventListener('click',function(){
+            BGM.pause();
+            explosionSFX.play();
+            menu.style.filter = 'saturate(0)';
+            setTimeout(()=>location.href=location.origin+'/public/'+element.id+'.html',1000);
+        })
+        
+    }
+
+    //背景音樂循環播放
+    BGM.loop=true;
+
+    window.addEventListener('touchstart',function (e) { 
+        touchPosition.x=e.changedTouches[0].pageX;
+        touchPosition.y=e.changedTouches[0].pageY;
+        isTouchDown = true;
+     })
+    window.addEventListener('touchmove',function(e){
+        if(isTouchDown){
+                    const   slideDistance = e.changedTouches[0].pageX - touchPosition.x;
+                if(slideDistance<=-TOUCH_THRESHOLD
+                    &&touchKeys.indexOf('swipe left')===-1){
+                    touchKeys.push('swipe left');
+                    animate('prev');                         
+                }else if(slideDistance>=TOUCH_THRESHOLD
+                        &&touchKeys.indexOf('swipe right')===-1){
+                    touchKeys.push('swipe right');
+                            animate('next');
+                }
+                } 
+    })
+    window.addEventListener('touchend',function(){
+        touchPosition.x=undefined;
+                touchPosition.y=undefined;
+                if(touchKeys.indexOf('swipe left')>-1)touchKeys.splice(touchKeys.indexOf('swipe left'),1);
+                else if(touchKeys.indexOf('swipe right')>-1)touchKeys.splice(touchKeys.indexOf('swipe right'),1);
+                isTouchDown = false; 
+    })
+    previousBtn.addEventListener('click',()=>animate('prev'));
+    nextBtn.addEventListener('click',()=>animate('next'));
+    BGMControl.addEventListener("click",toggleBGM);
+
+//用按鈕讓使用者控制音樂播放
+function toggleBGM(event){
+    if (event.cancelable) event.preventDefault();
+    BGM.paused?BGM.play():BGM.pause();
+}
+
+
+function animate(dir){
+        switch(dir){
+            case 'prev':
+                degree-=120;
+                if(modeIndex==0)modeIndex = modes.length-1;
+                else modeIndex-=1;
+                break;
+            case 'next':
+                degree+=120;
+                if(modeIndex == modes.length-1)modeIndex = 0;
+                else modeIndex+=1;
+        }
+        for (const [index,element] of modes.entries()) {
+            if(index==modeIndex){
+            element.style.display = 'inline';
+        }else{
+            element.style.display = 'none';
+        }
+        
+    }
+        imageBox.style.transform = `rotateY(${degree}deg)`;
+
+    }
+    </script>
+  </body>
+</html>

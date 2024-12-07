@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="menu.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Bad joke</title>
+  </head>
+  <body>
+    <div id="test"></div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+ // TODO: Add SDKs for Firebase products that you want to use
+ // https://firebase.google.com/docs/web/setup#available-libraries
+ 
+ // Your web app's Firebase configuration
+ const firebaseConfig = {
+   apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
+   authDomain: "bad-joke-60b0c.firebaseapp.com",
+   projectId: "bad-joke-60b0c",
+   storageBucket: "bad-joke-60b0c.firebasestorage.app",
+   messagingSenderId: "59569384855",
+   appId: "1:59569384855:web:731da50b3fc6fb172b28d2"
+ };
+ 
+ // Initialize Firebase
+ const app = initializeApp(firebaseConfig);
+     </script>
+     <script > 
+     const explosionSFX = new Audio('explosion.mp3');
+     const BGM = new Audio('deep-sea-exploration.mp3');
+     const BGMControl = document.getElementById("BGM-control");
+    
+     let test = document.getElementById('test');
+    
+     
+     
+ 
+    
+ 
+     //背景音樂循環播放
+     BGM.loop=true;
+ 
+     BGMControl.addEventListener("click",toggleBGM);
+ 
+ //用按鈕讓使用者控制音樂播放
+ function toggleBGM(event){
+     if (event.cancelable) event.preventDefault();
+     BGM.paused?BGM.play():BGM.pause();
+ }
+ 
+ 
+ 
+     </script>

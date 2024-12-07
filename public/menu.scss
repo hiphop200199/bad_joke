@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Geo:ital@0;1&display=swap'); 
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+scroll-behavior: smooth;
+font-family: "Geo", sans-serif;
+}
+
+$color1:#000B58;
+$color2:#003161;
+$color3:#006A67;
+$color4:#FFF4B7;
+
+#menu{
+    position: relative;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    background-color: #000B58;
+    #BGM-control{
+        position: absolute;
+        right: 2%;
+        top: 2%;
+        padding: 2px;
+        border: none;
+        background: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #FFF4B7;
+    }
+    #title{
+        color: #FFF4B7;
+        font-weight: 700;
+        font-size: 12rem;
+    }
+    #image-box {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        transition: 0.5s;
+        span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 200px;
+          height: 150px;
+    
+          transform-style: preserve-3d;
+          transform-origin: center;
+    
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    #button-field{
+        button{
+            color: #FFF4B7;
+            background: none;
+            border: none;
+            font-size: 3rem;
+            cursor: pointer;
+            &.mode{
+                margin-inline: 20px;
+                width: 8ch;
+            }
+        }
+    }
+}
+
+
+@media screen  and (max-width:576px) {
+    #menu{
+        #title{
+            font-size: 6rem;
+        }
+        #get-in{
+            font-size: 3rem;
+        }
+        #copyright{
+            font-size: 1rem;
+        }
+    }
+}
+@media screen and (max-width:576px){
+    #menu{
+        #title{
+            font-size: 4rem;
+        }
+        #get-in{
+            font-size: 4rem;
+        }
+        #copyright{
+            font-size: 2rem;
+        }
+    }
+} 
+@media screen and (min-width:577px) and (max-width:767px) {
+    #menu{
+        #title{
+            font-size: 6rem;
+        }
+        #get-in{
+            font-size: 4rem;
+        }
+        #copyright{
+            font-size: 2rem;
+        }
+       
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:992px) {
+    #menu{
+        #title{
+            font-size: 8rem;
+        }
+        #get-in{
+            font-size: 4rem;
+        }
+        #copyright{
+            font-size: 2rem;
+        }
+    }
+}
+
+
+
+
+
+@for $i from 1 through 3 {
+    #menu #image-box span:nth-of-type(#{$i}) {
+      transform: translate(-50%, -50%)
+        rotateY($i * 120deg)
+        translateZ(250px)
+        rotateX(-15deg);
+    }
+    @media screen and (max-width:767px){
+        #menu #image-box span:nth-of-type(#{$i}) {
+            transform: translate(-50%, -50%)
+              rotateY($i * 120deg)
+              translateZ(100px)
+              rotateX(-15deg);
+          }
+    }
+  }

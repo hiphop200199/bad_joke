@@ -69,7 +69,7 @@ $color4:#FFF4B7;
         font-weight: 700;
         text-align: center;
         font-size: 12rem;
-        transform: rotateX(-50deg) translateZ(250px);
+        transform: rotateX(-50deg) translateZ(300px);
         transition: 0.5s;
         transition-delay: 1.5s;
         &.in{
@@ -79,6 +79,7 @@ $color4:#FFF4B7;
     #get-in{
         display: block;
         width: fit-content;
+        border: none;
         text-decoration: none;
         color: black;
         font-weight: 700;
@@ -90,6 +91,7 @@ $color4:#FFF4B7;
         transition: 0.5s;
         transition-delay: 2s;
         animation: getIn 3s infinite linear;
+        cursor: pointer;
         &.in{
             opacity: 1;
         }

@@ -67,7 +67,7 @@
   font-weight: 700;
   text-align: center;
   font-size: 12rem;
-  transform: rotateX(-50deg) translateZ(250px);
+  transform: rotateX(-50deg) translateZ(300px);
   transition: 0.5s;
   transition-delay: 1.5s;
 }
@@ -78,6 +78,7 @@
   display: block;
   width: -moz-fit-content;
   width: fit-content;
+  border: none;
   text-decoration: none;
   color: black;
   font-weight: 700;
@@ -89,6 +90,7 @@
   transition: 0.5s;
   transition-delay: 2s;
   animation: getIn 3s infinite linear;
+  cursor: pointer;
 }
 #entry #get-in.in {
   opacity: 1;
