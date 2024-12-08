@@ -43,6 +43,7 @@ $color4:#FFF4B7;
         color: #FFF4B7;
     }
     #title{
+        align-self: center;
         color: #FFF4B7;
         font-weight: 700;
         font-size: 12rem;
@@ -101,6 +102,20 @@ $color4:#FFF4B7;
         }
         #copyright{
             font-size: 2rem;
+        }
+    }
+}
+@media screen and (orientation:landscape) and (min-width:400px) and (max-height:576px){
+    #search{
+        padding-block: 10px;
+        #title{
+            font-size: 4rem;
+        }
+        details{
+            font-size: 1rem;
+            summary{
+                font-size: 2rem;
+            }
         }
     }
 }

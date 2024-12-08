@@ -22,7 +22,6 @@
   <body>
     
    <div id="menu">
-    <button id="back">↖</button>
     <button id="BGM-control">♫</button>
     <h1 id="title">Mode select.</h1>
     <section id="image-box">
@@ -58,9 +57,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
     </script>
     <script > 
-    const explosionSFX = new Audio('explosion.mp3');
     const TOUCH_THRESHOLD = 200;
-    const back = document.getElementById('back');
     const BGM = new Audio('winter-begins.mp3');
     const BGMControl = document.getElementById("BGM-control");
     const modes = document.querySelectorAll('.mode');
@@ -86,9 +83,7 @@ const app = initializeApp(firebaseConfig);
         }
         element.addEventListener('click',function(){
             BGM.pause();
-            explosionSFX.play();
-            menu.style.filter = 'saturate(0)';
-            setTimeout(()=>location.href=location.origin+'/'+element.id+'.html',1000);
+            location.href=location.origin+'/'+element.id+'.html';
         })
         
     }
@@ -122,7 +117,6 @@ const app = initializeApp(firebaseConfig);
                 else if(touchKeys.indexOf('swipe right')>-1)touchKeys.splice(touchKeys.indexOf('swipe right'),1);
                 isTouchDown = false; 
     })
-    back.addEventListener('click',()=>location.href = location.origin);
     previousBtn.addEventListener('click',()=>animate('prev'));
     nextBtn.addEventListener('click',()=>animate('next'));
     BGMControl.addEventListener("click",toggleBGM);

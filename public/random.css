@@ -155,4 +155,24 @@
   #random #copyright {
     font-size: 2rem;
   }
+}
+@media screen and (orientation: landscape) and (min-width: 400px) and (max-height: 576px) {
+  #random {
+    padding-block: 10px;
+  }
+  #random #title {
+    font-size: 4rem;
+  }
+  #random #subject {
+    font-size: 2rem;
+  }
+  #random #content {
+    font-size: 1rem;
+  }
+  #random #get-one {
+    font-size: 2rem;
+  }
+  #random #copyright {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=random.css.map */

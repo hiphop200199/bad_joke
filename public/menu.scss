@@ -155,4 +155,29 @@ $color4:#FFF4B7;
               rotateX(-15deg);
           }
     }
+    @media screen and (orientation:landscape) and (min-width:400px) and (max-height:576px){
+        #menu #image-box span:nth-of-type(#{$i}) {
+            transform: translate(-50%, -50%)
+              rotateY($i * 120deg)
+              translateZ(150px)
+              rotateX(-15deg);
+          }
+    }
   }
+  @media screen and (orientation:landscape) and (min-width:400px) and (max-height:576px){
+    #menu{
+        padding-block: 10px;
+        #title,#image-box,#button-field{
+            margin-block: 30px;
+        }
+        #title{
+            font-size: 6rem;
+        }
+       #image-box{
+        span{
+            width: 100px;
+            height: 100px;
+        }
+       }
+    }
+}

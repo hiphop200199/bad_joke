@@ -168,3 +168,23 @@ $color4:#FFF4B7;
         }
     }
 }
+@media screen and (orientation:landscape) and (min-width:400px) and (max-height:576px){
+    #random{
+        padding-block: 10px;
+        #title{
+            font-size: 4rem;
+        }
+        #subject{
+            font-size: 2rem;
+        }
+        #content{
+            font-size: 1rem;
+        }
+        #get-one{
+            font-size: 2rem;
+        }
+        #copyright{
+            font-size: 1rem;
+        }
+    }
+}

@@ -176,4 +176,24 @@
   #test #next-one {
     font-size: 4rem;
   }
+}
+@media screen and (orientation: landscape) and (min-width: 400px) and (max-height: 576px) {
+  #test {
+    padding-block: 10px;
+  }
+  #test #title {
+    font-size: 4rem;
+  }
+  #test #question {
+    font-size: 2rem;
+  }
+  #test #content {
+    font-size: 1rem;
+  }
+  #test #next-one {
+    font-size: 2rem;
+  }
+  #test #copyright {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=test.css.map */

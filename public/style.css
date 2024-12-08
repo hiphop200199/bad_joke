@@ -150,4 +150,22 @@
   #entry #copyright {
     font-size: 2rem;
   }
+}
+@media screen and (orientation: landscape) and (min-width: 400px) and (max-height: 576px) {
+  #entry {
+    padding-block: 10px;
+    justify-content: space-between;
+  }
+  #entry #title {
+    font-size: 6rem;
+  }
+  #entry #title.in {
+    transform: none;
+  }
+  #entry #get-in {
+    font-size: 3rem;
+  }
+  #entry #copyright {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=style.css.map */
