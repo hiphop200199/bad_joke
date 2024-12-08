@@ -21,6 +21,7 @@
   </head>
   <body>
     <div id="random">
+      <button id="back">↖</button>
       <button id="BGM-control">♫</button>
       <h1 id="title">Random joke.</h1>
       <h2 id="subject">Lorem, ipsum.</h2>
@@ -50,7 +51,7 @@
       
      const BGM = new Audio('a-curious-discovery.mp3');
      const BGMControl = document.getElementById("BGM-control");
-    
+     const back = document.getElementById('back');
      let test = document.getElementById('test');
     
      
@@ -62,7 +63,7 @@
      BGM.loop=true;
      BGM.volume=0.7;
      BGMControl.addEventListener("click",toggleBGM);
- 
+     back.addEventListener('click',()=>location.href = location.origin+'/menu.html');
  //用按鈕讓使用者控制音樂播放
  function toggleBGM(event){
      if (event.cancelable) event.preventDefault();
