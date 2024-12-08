@@ -24,53 +24,45 @@
       <button id="back">↖</button>
       <button id="BGM-control">♫</button>
     <h1 id="title">Joke list.</h1>
-      <details>Lorem, ipsum dolor.
-        <summary>Lorem ipsum dolor sit amet.</summary>
-      </details>
-      <details>Lorem, ipsum dolor.
-        <summary>Lorem ipsum dolor .</summary>
-      </details>
-      <details>Lorem, ipsum dolor.
-        <summary>Lorem ipsum.</summary>
-      </details>
-      <details>Lorem, ipsum dolor.
-        <summary>Lorem ip.</summary>
-      </details>
-      <details>Lorem, ipsum dolor.
-        <summary>Lorem.</summary>
-      </details>
-      <details>Lorem, ipsum dolor.
-        <summary>Lo.</summary>
-      </details>
+    <section id="jokes-container">
+    </section>
     </div>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
- import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
- // TODO: Add SDKs for Firebase products that you want to use
- // https://firebase.google.com/docs/web/setup#available-libraries
- 
- // Your web app's Firebase configuration
- const firebaseConfig = {
-   apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
-   authDomain: "bad-joke-60b0c.firebaseapp.com",
-   projectId: "bad-joke-60b0c",
-   storageBucket: "bad-joke-60b0c.firebasestorage.app",
-   messagingSenderId: "59569384855",
-   appId: "1:59569384855:web:731da50b3fc6fb172b28d2"
- };
- 
- // Initialize Firebase
- const app = initializeApp(firebaseConfig);
-     </script>
-     <script > 
+     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore-compat.js"></script>
+     <script type="module"> 
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
+  authDomain: "bad-joke-60b0c.firebaseapp.com",
+  projectId: "bad-joke-60b0c",
+  storageBucket: "bad-joke-60b0c.firebasestorage.app",
+  messagingSenderId: "59569384855",
+  appId: "1:59569384855:web:731da50b3fc6fb172b28d2"
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = app.firestore();
+
      const BGM = new Audio('calm-and-soft-piano-music.mp3');
      const BGMControl = document.getElementById("BGM-control");
      const back = document.getElementById('back');
      let search = document.getElementById('search');
-    
+     let jokesContainer = document.getElementById('jokes-container');
      
      
- 
+     db.collection("jokes").orderBy("created_at", "desc").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        let jokeTemplate = `<details id="${doc.data().seq_no}">${doc.data().answer}
+        <summary>${doc.data().question}</summary>
+      </details>`;
+      jokesContainer.innerHTML+=jokeTemplate;
+    });
+});
     
  
      //背景音樂循環播放
