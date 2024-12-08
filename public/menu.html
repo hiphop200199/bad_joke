@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="icons/ice-72x72.png" />
+    <link rel="apple-touch-icon" href="icons/ice-96x96.png" />
+    <link rel="apple-touch-icon" href="icons/ice-128x128.png" />
+    <link rel="apple-touch-icon" href="icons/ice-144x144.png" />
+    <link rel="apple-touch-icon" href="icons/ice-152x152.png" />
+    <link rel="apple-touch-icon" href="icons/ice-192x192.png" />
+    <link rel="apple-touch-icon" href="icons/ice-384x384.png" />
+    <link rel="apple-touch-icon" href="icons/ice-512x512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
+    <meta name="theme-color" content="#000B58" />
     <link rel="stylesheet" href="menu.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Bad joke</title>
@@ -74,14 +86,14 @@ const app = initializeApp(firebaseConfig);
             BGM.pause();
             explosionSFX.play();
             menu.style.filter = 'saturate(0)';
-            setTimeout(()=>location.href=location.origin+'/public/'+element.id+'.html',1000);
+            setTimeout(()=>location.href=location.origin+'/'+element.id+'.html',1000);
         })
         
     }
 
     //背景音樂循環播放
     BGM.loop=true;
-
+    BGM.volume=0.7;
     window.addEventListener('touchstart',function (e) { 
         touchPosition.x=e.changedTouches[0].pageX;
         touchPosition.y=e.changedTouches[0].pageY;

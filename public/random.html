@@ -3,12 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="menu.css">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="icons/ice-72x72.png" />
+    <link rel="apple-touch-icon" href="icons/ice-96x96.png" />
+    <link rel="apple-touch-icon" href="icons/ice-128x128.png" />
+    <link rel="apple-touch-icon" href="icons/ice-144x144.png" />
+    <link rel="apple-touch-icon" href="icons/ice-152x152.png" />
+    <link rel="apple-touch-icon" href="icons/ice-192x192.png" />
+    <link rel="apple-touch-icon" href="icons/ice-384x384.png" />
+    <link rel="apple-touch-icon" href="icons/ice-512x512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
+    <meta name="theme-color" content="#000B58" />
+    <link rel="stylesheet" href="random.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Bad joke</title>
   </head>
   <body>
-    <div id="random"></div>
+    <div id="random">
+      <button id="BGM-control">♫</button>
+      <h1 id="title">Random joke.</h1>
+      <h2 id="subject">Lorem, ipsum.</h2>
+      <p id="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, sapiente!</p>
+      <button id="get-one">Get one.</button>
+    </div>
     <script type="module">
         // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
@@ -29,8 +47,8 @@
  const app = initializeApp(firebaseConfig);
      </script>
      <script > 
-      const explosionSFX = new Audio('explosion.mp3');
-     const BGM = new Audio('deep-sea-exploration.mp3');
+      
+     const BGM = new Audio('a-curious-discovery.mp3');
      const BGMControl = document.getElementById("BGM-control");
     
      let test = document.getElementById('test');
@@ -42,7 +60,7 @@
  
      //背景音樂循環播放
      BGM.loop=true;
- 
+     BGM.volume=0.7;
      BGMControl.addEventListener("click",toggleBGM);
  
  //用按鈕讓使用者控制音樂播放

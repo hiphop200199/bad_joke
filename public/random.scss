@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Geo:ital@0;1&display=swap'); 
+
+/*chrome,opera,safari,edge客製捲軸*/
+::-webkit-scrollbar{
+    -webkit-appearance: none;
+    width:2px;
+}
+::-webkit-scrollbar-track{
+    background:none;
+}
+::-webkit-scrollbar-thumb{
+    background-color:#FFF4B7;
+    border-radius:12px;
+}
+
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+scroll-behavior: smooth;
+overflow-x: clip;
+font-family: "Geo", sans-serif;
+}
+
+$color1:#000B58;
+$color2:#003161;
+$color3:#006A67;
+$color4:#FFF4B7;
+
+
+#random{
+    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+    background-color: #000B58;
+    #BGM-control{
+        position: absolute;
+        right: 2%;
+        top: 2%;
+        padding: 2px;
+        border: none;
+        background: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #FFF4B7;
+    }
+    #title{
+        color: #FFF4B7;
+        font-weight: 700;
+        font-size: 12rem;    
+    }
+    #subject{
+        height: 60px;
+        color: #FFF4B7;
+        font-weight: 700;
+        font-size: 3rem;
+    }
+    #content{
+        width: 50%;
+        max-width: 800px;
+        height: 100px;
+        color: #FFF4B7;
+        font-size: 2rem;
+        overflow-y: auto;
+        scrollbar-gutter:stable;
+        scrollbar-width:auto;
+        scrollbar-color:#FFF4B7 transparent;
+    }
+    #get-one{
+        display: block;
+        width: fit-content;
+        border: none;
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+        font-size: 6rem;
+        background-color: #FFF4B7;
+        padding: 30px 5px;
+        border-radius: 50%;
+        animation: getIn 3s infinite linear;
+        cursor: pointer;
+    }
+    
+}
+
+
+@keyframes getIn {
+    0%,100%{
+        scale:1;
+    }
+    5%,10%{
+        scale:1.2;
+    }
+    7.5%,12.5%{
+        scale:1;
+    }
+}
+@media screen  and (max-width:576px) {
+    #random{
+        #title{
+            font-size: 4rem;
+        }
+        #subject{
+            font-size: 2rem;
+        }
+        #content{
+            font-size: 1rem;
+        }
+        #get-one{
+            font-size: 2rem;
+        }
+        #copyright{
+            font-size: 1rem;
+        }
+    }
+}
+@media screen and (min-width:577px) and (max-width:767px) {
+    #random{
+        #title{
+            font-size: 6rem;
+        }
+        #subject{
+            font-size: 2.5rem;
+        }
+        #content{
+            font-size: 1.2rem;
+        }
+        #get-one{
+            font-size: 2.5rem;
+        }
+        #copyright{
+            font-size: 2rem;
+        }
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:992px) {
+    #random{
+        #title{
+            font-size: 8rem;
+        }
+        #subject{
+            font-size: 4rem;
+        }
+        #content{
+            font-size: 1.5rem;
+        }
+        #get-one{
+            font-size: 4rem;
+        }
+        #copyright{
+            font-size: 2rem;
+        }
+    }
+}
