@@ -45,6 +45,7 @@
   font-size: 12rem;
 }
 #search details {
+  margin-block: 10px;
   padding: 10px;
   color: #FFF4B7;
   font-size: 2rem;

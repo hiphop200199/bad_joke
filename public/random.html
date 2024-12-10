@@ -50,7 +50,7 @@ const db = app.firestore();
      const BGMControl = document.getElementById("BGM-control");
      const back = document.getElementById('back');
      let test = document.getElementById('test');
-     let randomSeqNo = Math.floor(Math.random()*14+1); 
+     let randomSeqNo = Math.floor(Math.random()*24+1); 
      let subject = document.getElementById('subject');
      let content = document.getElementById('content'); 
      let getOne = document.getElementById('get-one');
@@ -70,7 +70,7 @@ const db = app.firestore();
      BGMControl.addEventListener("click",toggleBGM);
      back.addEventListener('click',()=>location.href = location.origin+'/menu.html');
      getOne.addEventListener('click',function(){
-      randomSeqNo = Math.floor(Math.random()*14+1); 
+      randomSeqNo = Math.floor(Math.random()*24+1); 
       db.collection("jokes").where("seq_no","==",randomSeqNo).get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots

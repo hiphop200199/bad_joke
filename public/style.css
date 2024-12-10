@@ -82,9 +82,9 @@
   text-decoration: none;
   color: black;
   font-weight: 700;
-  font-size: 6rem;
+  font-size: 4rem;
   background-color: #FFF4B7;
-  padding: 30px 5px;
+  padding: 20px 5px;
   border-radius: 50%;
   opacity: 0;
   transition: 0.5s;
@@ -143,9 +143,6 @@
 @media screen and (min-width: 768px) and (max-width: 992px) {
   #entry #title {
     font-size: 8rem;
-  }
-  #entry #get-in {
-    font-size: 4rem;
   }
   #entry #copyright {
     font-size: 2rem;

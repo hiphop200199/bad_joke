@@ -64,13 +64,24 @@ $color4:#FFF4B7;
         font-weight: 700;
         font-size: 12rem;    
     }
-    #question{
+    #question,#result-text{
         height: 60px;
         color: #FFF4B7;
         font-weight: 700;
         font-size: 3rem;
     }
-    
+    #result-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        *{
+            margin-block: 10px;
+        }
+        #result-img{
+            width: 80%;
+            max-width: 600px;
+        }
+    }
     #answers{
         display: flex;
         flex-direction: column;
@@ -93,7 +104,7 @@ $color4:#FFF4B7;
             .custom-radio{
                 position: absolute;
                 left: 0;
-                top: 0;
+                top: calc(50% - 16px);
                 height: 32px;
                 width: 32px;
                 border-radius: 50%;
@@ -112,19 +123,22 @@ $color4:#FFF4B7;
             }
         }
     }
-    #next-one{
+    #next-one,#result{
         display: block;
         width: fit-content;
         border: none;
         text-decoration: none;
         color: black;
         font-weight: 700;
-        font-size: 6rem;
+        font-size: 4rem;
         background-color: #FFF4B7;
-        padding: 30px 5px;
+        padding: 20px 5px;
         border-radius: 50%;
         animation: getIn 3s infinite linear;
         cursor: pointer;
+    }
+    #result{
+        display: none;
     }
     
 }
@@ -146,17 +160,14 @@ $color4:#FFF4B7;
         #title{
             font-size: 4rem;
         }
-        #question{
+        #question,#result-text{
             font-size: 2rem;
         }
         #content{
             font-size: 1rem;
         }
-        #next-one{
+        #next-one,#result{
             font-size: 2rem;
-        }
-        #copyright{
-            font-size: 1rem;
         }
     }
 }
@@ -165,17 +176,14 @@ $color4:#FFF4B7;
         #title{
             font-size: 6rem;
         }
-        #question{
+        #question,#result-text{
             font-size: 2.5rem;
         }
         #content{
             font-size: 1.2rem;
         }
-        #next-one{
+        #next-one,#result{
             font-size: 2.5rem;
-        }
-        #copyright{
-            font-size: 2rem;
         }
     }
 }
@@ -184,9 +192,6 @@ $color4:#FFF4B7;
     #test{
         #title{
             font-size: 8rem;
-        }
-        #next-one{
-            font-size: 4rem;
         }
       
     }
@@ -197,17 +202,14 @@ $color4:#FFF4B7;
         #title{
             font-size: 4rem;
         }
-        #question{
+        #question,#result-text{
             font-size: 2rem;
         }
         #content{
             font-size: 1rem;
         }
-        #next-one{
+        #next-one,#result{
             font-size: 2rem;
-        }
-        #copyright{
-            font-size: 1rem;
         }
     }
 }
