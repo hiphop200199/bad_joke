@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <link rel="apple-touch-icon" href="icons/ice-72x72.png" />
-    <link rel="apple-touch-icon" href="icons/ice-96x96.png" />
-    <link rel="apple-touch-icon" href="icons/ice-128x128.png" />
-    <link rel="apple-touch-icon" href="icons/ice-144x144.png" />
-    <link rel="apple-touch-icon" href="icons/ice-152x152.png" />
-    <link rel="apple-touch-icon" href="icons/ice-192x192.png" />
-    <link rel="apple-touch-icon" href="icons/ice-384x384.png" />
-    <link rel="apple-touch-icon" href="icons/ice-512x512.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-72x72.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-96x96.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-128x128.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-144x144.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-152x152.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-192x192.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-384x384.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
     <meta name="theme-color" content="#000B58" />
-    <link rel="stylesheet" href="test.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Bad joke</title>
   </head>
   <body>
@@ -53,10 +53,10 @@ const app = firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = app.firestore();
 
-     const BGM = new Audio('deep-sea-exploration.mp3');
+     const BGM = new Audio('../music/deep-sea-exploration.mp3');
      const BGMControl = document.getElementById("BGM-control");
-     const SuccessSFX = new Audio('success.mp3');
-     const failSFX = new Audio('fail.mp3');
+     const SuccessSFX = new Audio('../sfx/success.mp3');
+     const failSFX = new Audio('../sfx/fail.mp3');
      const back = document.getElementById('back');
      const nextOne = document.getElementById('next-one');
      const result = document.getElementById('result');
@@ -196,6 +196,7 @@ const db = app.firestore();
       
     })
     result.addEventListener('click',function(){
+      BGM.pause();
       question.style.display='none';
       answers.style.display='none';
       this.style.display='none';
@@ -216,7 +217,7 @@ const db = app.firestore();
      BGM.loop=true;
      BGM.volume=0.7;
      BGMControl.addEventListener("click",toggleBGM);
-     back.addEventListener('click',()=>location.href = location.origin+'/menu.html');
+     back.addEventListener('click',()=>location.href = location.origin+'/pages/menu.html');
  //用按鈕讓使用者控制音樂播放
  function toggleBGM(event){
      if (event.cancelable) event.preventDefault();
@@ -241,7 +242,7 @@ const db = app.firestore();
  
   function randomNumbers(){
     let numBox = [];
-    for(let i=1;i<28;i++){
+    for(let i=1;i<32;i++){
       numBox[i-1]=i;
     }
     randomSeqNo = numBox[Math.round(Math.random()*(numBox.length-1))];

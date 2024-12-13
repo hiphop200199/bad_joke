@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="icons/ice-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
     <meta name="theme-color" content="#000B58" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Bad joke</title>
   </head>
@@ -58,7 +58,7 @@ const app = initializeApp(firebaseConfig);
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 const logoImage = document.getElementById("logo-image");
-const explosionSFX = new Audio('explosion.mp3');
+const explosionSFX = new Audio('sfx/explosion.mp3');
 let logoAnimation;
 let entry = document.getElementById('entry');
 let entryBGs = document.querySelectorAll('.background');
@@ -80,7 +80,7 @@ entryBtn.addEventListener('click',function(){
     entryTitle.classList.remove('in');
     entryBtn.classList.remove('in');
     entryCopyright.classList.remove('in');
-    setTimeout(()=>location.href+='menu.html',3000)
+    setTimeout(()=>location.href+='/pages/menu.html',3000)
 })
 
 

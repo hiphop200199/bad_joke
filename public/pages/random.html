@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <link rel="apple-touch-icon" href="icons/ice-72x72.png" />
-    <link rel="apple-touch-icon" href="icons/ice-96x96.png" />
-    <link rel="apple-touch-icon" href="icons/ice-128x128.png" />
-    <link rel="apple-touch-icon" href="icons/ice-144x144.png" />
-    <link rel="apple-touch-icon" href="icons/ice-152x152.png" />
-    <link rel="apple-touch-icon" href="icons/ice-192x192.png" />
-    <link rel="apple-touch-icon" href="icons/ice-384x384.png" />
-    <link rel="apple-touch-icon" href="icons/ice-512x512.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-72x72.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-96x96.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-128x128.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-144x144.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-152x152.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-192x192.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-384x384.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
     <meta name="theme-color" content="#000B58" />
-    <link rel="stylesheet" href="random.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/random.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Bad joke</title>
   </head>
   <body>
@@ -46,7 +46,7 @@ const app = firebase.initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = app.firestore();
 
-     const BGM = new Audio('a-curious-discovery.mp3');
+     const BGM = new Audio('../music/a-curious-discovery.mp3');
      const BGMControl = document.getElementById("BGM-control");
      const back = document.getElementById('back');
      let test = document.getElementById('test');
@@ -68,7 +68,7 @@ const db = app.firestore();
      BGM.loop=true;
      BGM.volume=0.7;
      BGMControl.addEventListener("click",toggleBGM);
-     back.addEventListener('click',()=>location.href = location.origin+'/menu.html');
+     back.addEventListener('click',()=>location.href = location.origin+'/pages/menu.html');
      getOne.addEventListener('click',function(){
       randomSeqNo = Math.floor(Math.random()*24+1); 
       db.collection("jokes").where("seq_no","==",randomSeqNo).get().then((querySnapshot) => {

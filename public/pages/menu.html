@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <link rel="apple-touch-icon" href="icons/ice-72x72.png" />
-    <link rel="apple-touch-icon" href="icons/ice-96x96.png" />
-    <link rel="apple-touch-icon" href="icons/ice-128x128.png" />
-    <link rel="apple-touch-icon" href="icons/ice-144x144.png" />
-    <link rel="apple-touch-icon" href="icons/ice-152x152.png" />
-    <link rel="apple-touch-icon" href="icons/ice-192x192.png" />
-    <link rel="apple-touch-icon" href="icons/ice-384x384.png" />
-    <link rel="apple-touch-icon" href="icons/ice-512x512.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-72x72.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-96x96.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-128x128.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-144x144.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-152x152.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-192x192.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-384x384.png" />
+    <link rel="apple-touch-icon" href="../icons/ice-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
     <meta name="theme-color" content="#000B58" />
-    <link rel="stylesheet" href="menu.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Bad joke</title>
   </head>
   <body>
@@ -25,9 +25,9 @@
     <button id="BGM-control">♫</button>
     <h1 id="title">Mode select.</h1>
     <section id="image-box">
-        <span><img src="magnifying-glass.png" alt=""></span>   
-        <span><img src="ask.png" alt=""></span>   
-        <span><img src="question-mark.png" alt=""></span>
+        <span><img src="../images/magnifying-glass.png" alt=""></span>   
+        <span><img src="../images/ask.png" alt=""></span>   
+        <span><img src="../images/question-mark.png" alt=""></span>
       </section>
     <section id="button-field">
         <button id="previous">&lt;</button>
@@ -58,7 +58,7 @@ const app = initializeApp(firebaseConfig);
     </script>
     <script > 
     const TOUCH_THRESHOLD = 200;
-    const BGM = new Audio('winter-begins.mp3');
+    const BGM = new Audio('../music/winter-begins.mp3');
     const BGMControl = document.getElementById("BGM-control");
     const modes = document.querySelectorAll('.mode');
     const previousBtn = document.getElementById('previous'); 
@@ -83,7 +83,7 @@ const app = initializeApp(firebaseConfig);
         }
         element.addEventListener('click',function(){
             BGM.pause();
-            location.href=location.origin+'/'+element.id+'.html';
+            location.href=location.origin+'/pages/'+element.id+'.html';
         })
         
     }
