@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   background-color: #000B58;
 }
 #search #back {
@@ -49,12 +49,16 @@
   padding: 10px;
   color: #FFF4B7;
   font-size: 2rem;
+  text-align: center;
 }
 #search details summary {
   color: #FFF4B7;
   font-weight: 700;
   font-size: 3rem;
   cursor: pointer;
+}
+#search #joke-container {
+  margin-block-start: 30px;
 }
 
 @media screen and (max-width: 576px) {
