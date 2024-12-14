@@ -15,8 +15,8 @@
     <link rel="apple-touch-icon" href="../icons/ice-512x512.png" />
     <meta name="apple-mobile-web-app-status-bar" content="#000B58" />
     <meta name="theme-color" content="#000B58" />
-    <link rel="stylesheet" href="../css/test.css">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/test.css" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
     <title>Bad joke</title>
   </head>
   <body>
@@ -25,232 +25,184 @@
       <button id="BGM-control">♫</button>
       <h1 id="title">Test.</h1>
       <h2 id="question"></h2>
-      <section id="answers">
-       
-      </section>
-     
+      <section id="answers"></section>
+
       <button id="next-one">Next one.</button>
       <button id="result">Submit.</button>
       <div id="result-box">
-        <img id="result-img" src="" alt="">
+        <img id="result-img" src="" alt="" />
         <h2 id="result-text"></h2>
       </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore-compat.js"></script>
 
-     <script type="module"> 
-     const firebaseConfig = {
-  apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
-  authDomain: "bad-joke-60b0c.firebaseapp.com",
-  projectId: "bad-joke-60b0c",
-  storageBucket: "bad-joke-60b0c.firebasestorage.app",
-  messagingSenderId: "59569384855",
-  appId: "1:59569384855:web:731da50b3fc6fb172b28d2"
-};
-const app = firebase.initializeApp(firebaseConfig);
+    <script type="module">
+      const firebaseConfig = {
+        apiKey: "AIzaSyC9qTQGvOwvbBmPkw-mcxJeeeJUVGbHrqQ",
+        authDomain: "bad-joke-60b0c.firebaseapp.com",
+        projectId: "bad-joke-60b0c",
+        storageBucket: "bad-joke-60b0c.firebasestorage.app",
+        messagingSenderId: "59569384855",
+        appId: "1:59569384855:web:731da50b3fc6fb172b28d2",
+      };
+      const app = firebase.initializeApp(firebaseConfig);
 
-// Initialize Cloud Firestore and get a reference to the service
-const db = app.firestore();
+      // Initialize Cloud Firestore and get a reference to the service
+      const db = app.firestore();
 
-     const BGM = new Audio('../music/deep-sea-exploration.mp3');
-     const BGMControl = document.getElementById("BGM-control");
-     const SuccessSFX = new Audio('../sfx/success.mp3');
-     const failSFX = new Audio('../sfx/fail.mp3');
-     const back = document.getElementById('back');
-     const nextOne = document.getElementById('next-one');
-     const result = document.getElementById('result');
-     let answerLabels ;
-     let test = document.getElementById('test');
-     let totalScore = 0;
-     let questionNumber = 1;
-     let randomSeqNo = 0;  
-     let randomSeqNo2 = 0;  
-     let randomSeqNo3 = 0;  
-     let randomSeqNo4 = 0;  
-     let question = document.getElementById('question');
-     let answers = document.getElementById('answers');
-     let rightAnswerTemplate;
-     let resultImg = document.getElementById('result-img');
-     let resultText = document.getElementById('result-text');
+      const BGM = new Audio("../music/deep-sea-exploration.mp3");
+      const BGMControl = document.getElementById("BGM-control");
+      const SuccessSFX = new Audio("../sfx/success.mp3");
+      const failSFX = new Audio("../sfx/fail.mp3");
+      const back = document.getElementById("back");
+      const nextOne = document.getElementById("next-one");
+      const result = document.getElementById("result");
+      let answerLabels;
+      let test = document.getElementById("test");
+      let totalScore = 0;
+      let questionNumber = 1;
+      let randomSeqNo = 0;
+      let randomSeqNo2 = 0;
+      let randomSeqNo3 = 0;
+      let randomSeqNo4 = 0;
+      let question = document.getElementById("question");
+      let answers = document.getElementById("answers");
+      let rightAnswerTemplate;
+      let resultImg = document.getElementById("result-img");
+      let resultText = document.getElementById("result-text");
 
-     randomNumbers();
+      generateRandomAnswers();
 
-     db.collection("jokes").where("seq_no","==",randomSeqNo).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        rightAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="1" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-        question.innerText =questionNumber+'.'+ doc.data().question;
-        answers.innerHTML+=rightAnswerTemplate;
-    });
-  });
-
-  db.collection("jokes").where("seq_no","==",randomSeqNo2).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        let wrongAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="0" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-          answers.innerHTML+=wrongAnswerTemplate;
-    });
-  });
-  db.collection("jokes").where("seq_no","==",randomSeqNo3).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        let wrongAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="0" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-          answers.innerHTML+=wrongAnswerTemplate;
-    });
-  });
-  db.collection("jokes").where("seq_no","==",randomSeqNo4).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        let wrongAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="0" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-          answers.innerHTML+=wrongAnswerTemplate;
-          for (const element of answers.children) {
-            element.addEventListener('click',function(e){
-              element.children[0].checked = true;
-            })
-          }
-          shuffle(answers.children);
-    });
-  });
- 
-
-      
      
-     
-    nextOne.addEventListener('click',function(){
-      let checkedAnswer = document.querySelector('input[type="radio"]:checked');
-      totalScore+= parseInt(checkedAnswer.value);
-      if(questionNumber<10){
-        questionNumber+=1;
-        while(answers.firstElementChild){
-        answers.removeChild(answers.firstElementChild);
-      }
-        randomNumbers();
-        db.collection("jokes").where("seq_no","==",randomSeqNo).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        rightAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="1" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-        question.innerText =questionNumber+'.'+ doc.data().question;
-        answers.innerHTML+=rightAnswerTemplate;
-    });
-  });
 
-  db.collection("jokes").where("seq_no","==",randomSeqNo2).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        let wrongAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="0" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-          answers.innerHTML+=wrongAnswerTemplate;
-    });
-  });
-  db.collection("jokes").where("seq_no","==",randomSeqNo3).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        let wrongAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="0" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-          answers.innerHTML+=wrongAnswerTemplate;
-    });
-  });
-  db.collection("jokes").where("seq_no","==",randomSeqNo4).get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        let wrongAnswerTemplate = `<label class="answer-container" for="">${doc.data().answer}<input type="radio" name="answer" value="0" id="" >
-          <span class="custom-radio">
-          </span></label>`;
-          answers.innerHTML+=wrongAnswerTemplate;
-          for (const element of answers.children) {
-            element.addEventListener('click',function(e){
-              element.children[0].checked = true;
-            })
+      nextOne.addEventListener("click", function () {
+        let checkedAnswer = document.querySelector(
+          'input[type="radio"]:checked'
+        );
+        totalScore += parseInt(checkedAnswer.value);
+        if (questionNumber < 10) {
+          questionNumber += 1;
+          while (answers.firstElementChild) {
+            answers.removeChild(answers.firstElementChild);
           }
-          shuffle(answers.children);
-    });
-  });
-      }else{
-        this.style.display='none';
-        result.style.display='inline';
-      }
-      
-
-      
-      
-    })
-    result.addEventListener('click',function(){
-      BGM.pause();
-      question.style.display='none';
-      answers.style.display='none';
-      this.style.display='none';
-      if(totalScore>5){
-        resultImg.src = 'https://pic.pimg.tw/siasianghostel/1500709049-2116473855_wn.jpg';
-        resultText.innerText = '歡迎加入Bad joke團隊!';
-        SuccessSFX.play();
-      }else{
-        resultImg.src = 'https://cdn0.popo.tw/note/69/184901//7370294/201804121745511.jpg';
-          resultText.innerText = '唉呀!回家作夢吧!';
+         generateRandomAnswers()
+        }
+         else {
+          this.style.display = "none";
+          result.style.display = "inline";
+        }
+      });
+      result.addEventListener("click", function () {
+        BGM.pause();
+        question.style.display = "none";
+        answers.style.display = "none";
+        this.style.display = "none";
+        if (totalScore > 5) {
+          resultImg.src =
+            "https://pic.pimg.tw/siasianghostel/1500709049-2116473855_wn.jpg";
+          resultText.innerText = "歡迎加入Bad joke團隊!";
+          SuccessSFX.play();
+        } else {
+          resultImg.src =
+            "https://cdn0.popo.tw/note/69/184901//7370294/201804121745511.jpg";
+          resultText.innerText = "唉呀!回家作夢吧!";
           failSFX.play();
+        }
+      });
+      //背景音樂循環播放
+      BGM.loop = true;
+      BGM.volume = 0.7;
+      BGMControl.addEventListener("click", toggleBGM);
+      back.addEventListener(
+        "click",
+        () => (location.href = location.origin + "/pages/menu.html")
+      );
+      //用按鈕讓使用者控制音樂播放
+      function toggleBGM(event) {
+        if (event.cancelable) event.preventDefault();
+        BGM.paused ? BGM.play() : BGM.pause();
       }
-       
-        
-     
-    })
-     //背景音樂循環播放
-     BGM.loop=true;
-     BGM.volume=0.7;
-     BGMControl.addEventListener("click",toggleBGM);
-     back.addEventListener('click',()=>location.href = location.origin+'/pages/menu.html');
- //用按鈕讓使用者控制音樂播放
- function toggleBGM(event){
-     if (event.cancelable) event.preventDefault();
-     BGM.paused?BGM.play():BGM.pause();
- }
- 
- function shuffle() {
-  let currentIndex = answers.children.length;
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
+      function shuffle() {
+        let currentIndex = answers.children.length;
 
-    // Pick a remaining element...
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+          // Pick a remaining element...
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
 
-    // And swap it with the current element.
-    answers.insertBefore(answers.children[randomIndex],answers.children[currentIndex]);
-   
-  }
-}
- 
-  function randomNumbers(){
-    let numBox = [];
-    for(let i=1;i<32;i++){
-      numBox[i-1]=i;
-    }
-    randomSeqNo = numBox[Math.round(Math.random()*(numBox.length-1))];
-    numBox.splice(randomSeqNo-1,1);
-    randomSeqNo2 = numBox[Math.round(Math.random()*(numBox.length-1))];
-    numBox.splice(randomSeqNo2-1,1);
-    randomSeqNo3 = numBox[Math.round(Math.random()*(numBox.length-1))];
-    numBox.splice(randomSeqNo3-1,1);
-    randomSeqNo4 = numBox[Math.round(Math.random()*(numBox.length-1))];
-  }
-     </script>
+          // And swap it with the current element.
+          answers.insertBefore(
+            answers.children[randomIndex],
+            answers.children[currentIndex]
+          );
+        }
+      }
+
+      function generateRandomAnswers() {
+        let numBox = [];
+        let length = 0;
+        db.collection("jokes")
+          .get()
+          .then((querySnapshot) => {
+            length = querySnapshot.size;
+            for (let i = 1; i < length; i++) {
+              numBox[i - 1] = i;
+            }
+            randomSeqNo =
+              numBox[Math.round(Math.random() * (numBox.length - 1))];
+            numBox.splice(randomSeqNo - 1, 1);
+            randomSeqNo2 =
+              numBox[Math.round(Math.random() * (numBox.length - 1))];
+            numBox.splice(randomSeqNo2 - 1, 1);
+            randomSeqNo3 =
+              numBox[Math.round(Math.random() * (numBox.length - 1))];
+            numBox.splice(randomSeqNo3 - 1, 1);
+            randomSeqNo4 =
+              numBox[Math.round(Math.random() * (numBox.length - 1))];
+
+            db.collection("jokes")
+              .where("seq_no", "in", [
+                randomSeqNo,
+                randomSeqNo2,
+                randomSeqNo3,
+                randomSeqNo4,
+              ])
+              .get()
+              .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  // doc.data() is never undefined for query doc snapshots
+                  console.log(doc.id, " => ", doc.data());
+                  if (doc.data().seq_no == randomSeqNo) {
+                    rightAnswerTemplate = `<label class="answer-container" for="">${
+                      doc.data().answer
+                    }<input type="radio" name="answer" value="1" id="" >
+          <span class="custom-radio">
+          </span></label>`;
+                    question.innerText =
+                      questionNumber + "." + doc.data().question;
+                    answers.innerHTML += rightAnswerTemplate;
+                  } else {
+                    let wrongAnswerTemplate = `<label class="answer-container" for="">${
+                      doc.data().answer
+                    }<input type="radio" name="answer" value="0" id="" >
+          <span class="custom-radio">
+          </span></label>`;
+                    answers.innerHTML += wrongAnswerTemplate;
+                  }
+                });
+
+                for (const element of answers.children) {
+                  element.addEventListener("click", function (e) {
+                    element.children[0].checked = true;
+                  });
+                }
+                shuffle(answers.children);
+              });
+          });
+      }
+    </script>
+  </body>
+</html>
